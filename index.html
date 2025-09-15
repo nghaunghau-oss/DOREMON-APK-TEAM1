@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOREMON APK TEAM</title>
+  <style>
+    :root{
+      --bg-url: url('https://files.catbox.moe/gcrboy.webp');
+      --accent: #2196f3;
+      --card-bg: rgba(0,0,0,0.5);
+      --text: #eafaf1;
+      --blur: 8px;
+      --radius: 14px;
+      --font-sans: "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    body{
+      margin:0;
+      height:100vh;
+      background:var(--bg-url) center/cover fixed no-repeat;
+      font-family:var(--font-sans);
+      color:var(--text);
+      display:flex;
+      flex-direction:column;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      background:var(--card-bg);
+      backdrop-filter:blur(var(--blur));
+      padding:10px 20px;
+    }
+    .logo .icon{
+      width:64px;
+      height:64px;
+      border-radius:12px;
+      background:url('https://files.catbox.moe/gcrboy.webp') center/cover no-repeat;
+    }
+    .title-app{
+      margin:0;
+      font-size:24px;
+      color:#2196f3;
+      text-shadow:2px 2px 0 #000;
+    }
+
+    /* Login Page */
+    #loginPage{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:20px;
+    }
+    #loginBox{
+      background:var(--card-bg);
+      backdrop-filter:blur(var(--blur));
+      padding:20px;
+      border-radius:var(--radius);
+      text-align:center;
+    }
+    #loginBox input{
+      padding:10px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.2);
+      background:rgba(255,255,255,0.1);
+      color:white;
+      width:200px;
+    }
+    #loginBox button{
+      margin-top:10px;
+      padding:10px 20px;
+      border:none;
+      border-radius:8px;
+      background:var(--accent);
+      color:#fff;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    /* Main Page */
+    #mainPage{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+    }
+    .menu{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      backdrop-filter:blur(var(--blur));
+    }
+    .menu h2{
+      margin-top:0;
+      text-align:center;
+      color:var(--accent);
+      text-shadow:1px 1px 0 #000;
+    }
+
+    /* Grid chức năng */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2,1fr);
+      gap:15px;
+      width:90%;
+      max-width:500px;
+    }
+    .card{
+      background:rgba(0,0,0,0.6);
+      border-radius:12px;
+      padding:12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      backdrop-filter:blur(6px);
+    }
+    .card span{
+      font-size:14px;
+      font-weight:600;
+    }
+    .toggle{
+      padding:6px 12px;
+      border:none;
+      border-radius:8px;
+      background:#666;
+      color:white;
+      font-weight:bold;
+      cursor:pointer;
+    }
+    .toggle.on{ background:#2ecc71; }
+    .toggle.danger{ background:#e74c3c; }
+    .toggle.fixed{ background:#2196f3; }
+
+    footer{
+      background:var(--card-bg);
+      backdrop-filter:blur(var(--blur));
+      text-align:center;
+      padding:12px;
+      font-size:14px;
+      line-height:1.5;
+    }
+    footer strong{ color:#2196f3; text-shadow:1px 1px 0 #000; }
+
+    .hidden{ display:none !important; }
+
+    /* Thông báo toast */
+    #notify{
+      position:fixed;
+      bottom:-60px;
+      left:50%;
+      transform:translateX(-50%);
+      background:rgba(0,0,0,0.85);
+      color:#fff;
+      padding:12px 24px;
+      border-radius:8px;
+      font-size:14px;
+      opacity:0;
+      transition:all 0.4s ease;
+      z-index:999;
+    }
+    #notify.show{
+      bottom:30px;
+      opacity:1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><div class="icon"></div></div>
+    <div>
+      <h1 class="title-app">DOREMON APK TEAM</h1>
+      <p>Bản Quyền: @nguyenhauioscheat</p>
+    </div>
+  </header>
+
+  <!-- Trang 1: Login -->
+  <div id="loginPage">
+    <div id="loginBox">
+      <h2>Nhập Key Admin Gửi</h2>
+      <input type="password" id="keyInput" placeholder="Nhập key...">
+      <br>
+      <button onclick="checkKey()">Mở khóa</button>
+    </div>
+  </div>
+
+  <!-- Trang 2: Main -->
+  <div id="mainPage" class="hidden">
+    <div class="menu">
+      <h2>📋 Danh Sách Chức Năng</h2>
+      <div class="grid">
+        <div class="card"><span>UI Sounds</span><button class="toggle">OFF</button></div>
+        <div class="card"><span>Combat Macros</span><button class="toggle">OFF</button></div>
+        <div class="card"><span>Smooth View Sys</span><button class="toggle">OFF</button></div>
+        <div class="card"><span>Head Scope</span><button class="toggle">OFF</button></div>
+        <div class="card"><span>DPI START</span><button class="toggle">OFF</button></div>
+        <div class="card"><span>GPU — Ultra Boost</span><button class="toggle on">ON</button></div>
+        <div class="card"><span>Admin</span><button class="toggle fixed">Admin</button></div>
+        <div class="card"><span>Reset</span><button class="toggle fixed">Reset</button></div>
+        <div class="card"><span>Đăng Xuất</span><button onclick="logout()" class="toggle danger">Logout</button></div>
+      </div>
+    </div>
+    <footer>
+      Trạng thái: <strong id="loginStatus">Đã mở khóa</strong><br>
+      Thời gian: <strong id="clock">--:--:--</strong> | 
+      Ngày: <strong id="dateNow">--/--/----</strong><br>
+      Máy: <strong id="deviceInfo">Đang tải...</strong>
+    </footer>
+  </div>
+
+  <!-- Toast thông báo -->
+  <div id="notify"></div>
+
+  <script>
+    const DEFAULT_KEY = "DOREMON APK TEAM";
+    const loginPage = document.getElementById("loginPage");
+    const mainPage = document.getElementById("mainPage");
+    const notifyBox = document.getElementById("notify");
+
+    function checkKey(){
+      const val = document.getElementById("keyInput").value.trim();
+      if(val === DEFAULT_KEY){
+        loginPage.classList.add("hidden");
+        mainPage.classList.remove("hidden");
+        showNotify("✅ Đăng nhập thành công!");
+      }else{
+        showNotify("❌ Sai key! Vui lòng nhập lại.");
+      }
+    }
+
+    function logout(){
+      mainPage.classList.add("hidden");
+      loginPage.classList.remove("hidden");
+      document.getElementById("keyInput").value="";
+      showNotify("🔒 Đã đăng xuất");
+    }
+
+    // Toggle ON/OFF
+    document.querySelectorAll(".toggle").forEach(btn=>{
+      if(!btn.classList.contains("fixed") && !btn.classList.contains("danger")){
+        btn.addEventListener("click",()=>{
+          const feature = btn.parentElement.querySelector("span").textContent;
+          if(btn.classList.contains("on")){
+            btn.classList.remove("on");
+            btn.textContent="OFF";
+            showNotify(`❌ Đã tắt ${feature}`);
+          }else{
+            btn.classList.add("on");
+            btn.textContent="ON";
+            showNotify(`✅ Đã bật ${feature}`);
+          }
+        });
+      }
+    });
+
+    // 🕒 Thời Gian
+    function updateClock(){
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2,'0');
+      const mm = String(now.getMinutes()).padStart(2,'0');
+      const ss = String(now.getSeconds()).padStart(2,'0');
+      document.getElementById('clock').textContent = `${hh}:${mm}:${ss}`;
+    }
+    setInterval(updateClock,1000);
+    updateClock();
+
+    // 📅 Ngày
+    function updateDate(){
+      const now = new Date();
+      const dd = String(now.getDate()).padStart(2,'0');
+      const mm = String(now.getMonth()+1).padStart(2,'0');
+      const yyyy = now.getFullYear();
+      document.getElementById('dateNow').textContent = `${dd}/${mm}/${yyyy}`;
+    }
+    updateDate();
+
+    // 💻 Thông tin máy
+    function updateDeviceInfo(){
+      const ua = navigator.userAgent;
+      const width = window.screen.width;
+      const height = window.screen.height;
+      const info = `${ua} | ${width}x${height}`;
+      document.getElementById('deviceInfo').textContent = info;
+    }
+    updateDeviceInfo();
+
+    // 📢 Hiện toast thông báo
+    function showNotify(msg){
+      notifyBox.textContent = msg;
+      notifyBox.classList.add("show");
+      setTimeout(()=> notifyBox.classList.remove("show"),2000);
+    }
+  </script>
+</body>
+</html>
